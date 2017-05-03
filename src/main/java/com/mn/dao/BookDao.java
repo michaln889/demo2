@@ -9,5 +9,5 @@ import com.mn.entity.Book;
 
 @Repository
 public interface BookDao extends JpaRepository<Book, Long> {
-	Collection<Book> findByTitle(String title);
+	//Collection<Book> findByTitle(String title);
 }

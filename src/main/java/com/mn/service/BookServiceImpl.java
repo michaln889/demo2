@@ -1,5 +1,6 @@
 package com.mn.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,10 +40,47 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public Collection<Book> findByTitle(String title) 
+	public Collection<Book> findByTitleOrAuthor(String title, String author) 
 	{
-		Collection<Book> findedByTitle = bookDao.findByTitle(title);
-		return findedByTitle;
+		Collection<Book> allBooks = bookDao.findAll();
+		Collection<Book> findedBooks = new ArrayList<>();
+		
+		if(title == "" && author == "")
+		{
+			findedBooks = null;
+		}
+		else if(title == "")
+		{
+			for(Book el : allBooks)
+			{
+				if(el.getAuthor().toLowerCase().contains(author.toLowerCase()))
+				{
+					findedBooks.add(el);
+				}
+			}
+		}
+		else if(author == "")
+		{
+			for(Book el : allBooks)
+			{
+				if(el.getTitle().toLowerCase().contains(title.toLowerCase()))
+				{
+					findedBooks.add(el);
+				}
+				
+			}
+		}
+		else 
+		{
+			for(Book el : allBooks)
+			{
+				if(el.getTitle().toLowerCase().contains(title.toLowerCase()) && el.getAuthor().toLowerCase().contains(author.toLowerCase()))
+				{
+					findedBooks.add(el);
+				}
+			}
+		}
+		return findedBooks;
 	}
 	 
 	 

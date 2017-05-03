@@ -13,8 +13,11 @@
     <h1>List of books</h1>
     
     <form action="${searchByTitle}" method="get">
-		<input type="text" name="title"/>
-		<input type="submit" value="Szukaj" />
+		Title:
+		<input type="text" name="title"/><br/>
+		Author:
+		<input type="text" name="author"/><br/>
+		<input type="submit" value="Search" />
 	</form> 
 	
 

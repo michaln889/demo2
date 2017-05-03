@@ -1,6 +1,5 @@
 package com.mn.controller;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,23 +38,17 @@ public class BookController {
     
     
     @RequestMapping(value="/booksfinder", method = RequestMethod.GET)
-    public String getBooksByTitle(Model model, @RequestParam(value="title") String title)
+    public String getBooksByTitle(Model model, @RequestParam(value="title") String title, @RequestParam(value="author") String author)
     {  	
     	//Collection<Book> findedBooks = bookService.findByTitle(title);
-    	Collection<Book> findedBooks = bookService.findAll();
-    	List<Book> findedBooks2 = new ArrayList<>();
+    	Collection<Book> findedBooks = bookService.findByTitleOrAuthor(title, author);
     	
-    	for(Book el : findedBooks)
+    	model.addAttribute("findedBooks", findedBooks);
+    	
+    	if(findedBooks == null || findedBooks.isEmpty())
     	{
-    		
-    		if(el.getTitle().toLowerCase().contains(title.toLowerCase()))
-    		{
-    			findedBooks2.add(el);
-    		}
-    	}
-    	
-    	model.addAttribute("findedBooks", findedBooks2);
-    	
+    		return "empty-query";
+    	}    	
     	return "finded-books";
     }
     

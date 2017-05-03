@@ -5,6 +5,7 @@
 <c:url value="/book/edit" var="editBookUrl"/>
 <c:url value="/book/delete" var="deleteBookUrl"/>
 <c:url value="/booksfinder" var="searchByTitle"/>
+<c:url value="/books" var="books"/>
 
 <c:url value="/rent/book" var="rentUrl"/>
 
@@ -12,13 +13,7 @@
 
     <h1>List of books</h1>
     
-    <form action="${searchByTitle}" method="get">
-		<input type="text" name="title"/>
-		<input type="submit" value="Szukaj" />
-	</form> 
-	
-
-    <div class="row">
+   <div class="row">
         <div class="col-md-12">
             <table class="table table-striped table-hover table-bordered">
                 <thead>
@@ -72,6 +67,10 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    
+    <div class="margin-bottom-10">
+        <a href="${books}" >Back to search engine</a>
     </div>
 
 </div>
